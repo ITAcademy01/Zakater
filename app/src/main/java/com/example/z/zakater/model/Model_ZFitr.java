@@ -5,7 +5,7 @@ package com.example.z.zakater.model;
  */
 
 public class Model_ZFitr {
-    private long id;
+    private int id;
     private int totalHasil ;
     private int jumlahKeluarga;
     private String kepalaKelName  ;
@@ -22,18 +22,21 @@ public class Model_ZFitr {
         this.kepalaKelName = kepalaKelName;
     }
 
-    public Model_ZFitr (long id, int totalHasil, int jumlahKeluarga, String kepalaKelName) {
+    public Model_ZFitr (int id, String kepalaKelName, int totalHasil, int jumlahKeluarga) {
         this.id = id;
         this.totalHasil = totalHasil;
         this.jumlahKeluarga = jumlahKeluarga;
         this.kepalaKelName = kepalaKelName;
     }
 
-    public long getId() {
+    public Model_ZFitr() {
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

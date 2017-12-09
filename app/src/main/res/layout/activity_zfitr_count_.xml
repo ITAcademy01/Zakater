@@ -5,55 +5,94 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="16dp"
     tools:context="com.example.z.zakater.Activity.ZFitrCount_Activity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+            <TextView
+                android:text="Jumlah Anggota Keluarga"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+            <EditText
+                android:drawableLeft="@drawable/ic_group"
+                android:drawablePadding="8dp"
+                android:id="@+id/editJumlahAnggota"
+                android:inputType="number"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+
+    </LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center">
+
+
+    <Button
+        style="@style/Base.Widget.AppCompat.Button.Colored"
+        android:id="@+id/btnHitungZakatFitr"
+        android:text="Hitung"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp" />
+    <Button
+        style="@style/Base.Widget.AppCompat.Button.Colored"
+        android:id="@+id/btnResetZakatFitr"
+        android:text="Reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp" />
+</LinearLayout>
+    <TextView
+        android:text="Zakat yang harus dikeluarkan : "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_marginBottom="8dp"/>
+    <TextView
+        android:id="@+id/txthasilhitung"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="25sp"
+        android:layout_marginBottom="8dp"/>
+
+
+<LinearLayout
+    android:id="@+id/linearRecordToDb"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:visibility="gone">
+
 
     <TextView
         android:text="Nama Kepala Keluarga"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
     <EditText
         android:id="@+id/edtkepalaKeluarga"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
-    <TextView
-        android:text="Jumlah Anggota Keluarga"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
-    <EditText
-        android:id="@+id/editJumlahAnggota"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
     <Button
-        android:id="@+id/btnHitungZakatFitr"
-        android:text="Hitung"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
-
-    <TextView
-        android:textSize="25sp"
-        android:layout_gravity="center"
-        android:id="@+id/txthasilhitung"
-        android:text="hasil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <Button
+        style="@style/Base.Widget.AppCompat.Button.Colored"
         android:text="Record "
+        android:layout_gravity="center"
         android:id="@+id/recordToDb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-    <Button
-        android:text="Record "
-        android:id="@+id/recordToDbb"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
-    <Button
-        android:text="Record 3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+</LinearLayout>
 </LinearLayout>

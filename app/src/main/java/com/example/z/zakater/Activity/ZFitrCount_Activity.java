@@ -6,9 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.z.zakater.Helper.Helper_zakatFitr;
+import com.example.z.zakater.Helper.Hlp_zakat;
 import com.example.z.zakater.R;
 import com.example.z.zakater.model.Model_ZFitr;
 
@@ -16,7 +17,7 @@ public class ZFitrCount_Activity extends AppCompatActivity {
 
 
     /*
-    * disini adalah deklarasi objeck penamaan variable
+    * deklarasi objeck penamaan variable
     *
     * */
     EditText edtKepalaKel ;
@@ -24,15 +25,13 @@ public class ZFitrCount_Activity extends AppCompatActivity {
     Button btnHitung;
     Button btnRecord;
     TextView texthasil;
-
+    LinearLayout lyRecordtoDb;
 
 
     /*
-    pembuatan global variable Integer hasilHitung
-    agar bisa diakses oleh semua elemen kelas ini */
+    global variabel */
     Integer hasilHitung;
-    Helper_zakatFitr mheHelper_zakatFitr;
-
+    Hlp_zakat mheHlp_zakat;
 
 
     @Override
@@ -42,18 +41,28 @@ public class ZFitrCount_Activity extends AppCompatActivity {
         initView();
 
 
+        //menampilkan back button ditoolbar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         /*
         * ini adalah evenHandling ketika user mengklik
         * btn hitung maka method ini akan berjalan
-        *
         * */
         btnHitung.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //cek if editText kosong maka setError
+                if (edtJumlahKel.getText().toString().equals("")){
+                    edtJumlahKel.setError("Masukkan nilai ");
+                    return;
+                }
+
 
                 //kita mengambil nilai dari jumlah Keluarga yg diinput oleh user
                 // kemudian menyimpannya dalam variable String jumlahKel;
                 String jumlahKel = edtJumlahKel.getText().toString();
+
 
                 //disini kita mengubah variabletype String ke dalam variableType Integer
                 Integer jumlahKelInt = Integer.parseInt(jumlahKel);
@@ -66,6 +75,8 @@ public class ZFitrCount_Activity extends AppCompatActivity {
                 hasilHitung = jumlahKelInt * takaran;
 
                 texthasil.setText(hasilHitung +" kg");
+                lyRecordtoDb.setVisibility(View.VISIBLE);
+
             }
 
 
@@ -79,31 +90,31 @@ public class ZFitrCount_Activity extends AppCompatActivity {
             public void onClick(View v) {
                 //kita mengambil nama keluarga yg telah diinputkan oleh user
                 String namaKeluarga = edtKepalaKel.getText().toString();
-                //mengambil jumlah keluarga yg tlah diinputkan oleh user kemudian mengubahnya
-                // kedalam variabletype int
+
+              //conevert String to int
                 int jumlahKeluarga = Integer.parseInt(edtJumlahKel.getText().toString());
-                //mengambil
+
+
                 int totalZakat = hasilHitung;
 
-
                 Model_ZFitr modelZakatFitrah = new Model_ZFitr(namaKeluarga, jumlahKeluarga, totalZakat);
-                mheHelper_zakatFitr = new Helper_zakatFitr(ZFitrCount_Activity.this);
-                mheHelper_zakatFitr.simpanHasilHitung(modelZakatFitrah);
+                mheHlp_zakat = new Hlp_zakat(ZFitrCount_Activity.this);
+                mheHlp_zakat.simpanHslZFitr(modelZakatFitrah);
 
                 Intent i = new Intent(ZFitrCount_Activity.this, List_ZFitr_Activity.class);
                 startActivity(i);
+                finish();
             }
         });
+
 
 
     }
 
 
 
-    /**
-     * ini adalah method untuk meng-inisiasi view(Widget) kita yang
+    /*ini adalah method untuk meng-inisiasi view(Widget) kita yang
      * sudah kita setting id-nya pada file XML kita
-     *
      * dengan kata lain kita membuat objeck di file java kemudian kita menghubungkannya
      * dengan id-nya di layout file java trsebut kita
      */
@@ -113,6 +124,12 @@ public class ZFitrCount_Activity extends AppCompatActivity {
         texthasil = findViewById(R.id.txthasilhitung);
         btnHitung = findViewById(R.id.btnHitungZakatFitr);
         btnRecord = findViewById(R.id.recordToDb);
+        lyRecordtoDb = findViewById(R.id.linearRecordToDb);
 
     }
+
+
+
+
+
 }
